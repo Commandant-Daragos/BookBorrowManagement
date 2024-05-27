@@ -13,10 +13,13 @@
     <p>
         <a asp-page="/Books/Create">Create New Book</a>
     </p>
-    <p>
-        <a asp-page="/Books/Delete">Delete book by ID</a>
-        <select asp-for="SelectedBookId" asp-items="Model.BookIDs">
+    <form method="get" action="/Books/Delete">
+        <p>Delete book by ID</p>
+        <select asp-items="Model.BookIDs" name="id"> @* asp-for="SelectedBookId" *@
             <option value="">--</option>
         </select>
-    </p>
+        <div class="form-group">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+        </div>
+    </form>
 </div>

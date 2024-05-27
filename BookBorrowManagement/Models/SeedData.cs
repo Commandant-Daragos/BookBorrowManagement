@@ -55,7 +55,7 @@ namespace BookBorrowManagement.Models
                         Title = "How to build a catapult(Again)",
                         ReleaseDate = DateTime.Parse("1325-12-12"),
                         Genre = "History novel",
-                        Description = "Description of catapults in 15th. century(Again)",
+                        Description = "Description of catapults in 15th. century(Again-because content did not change)",
                         Status = Status.New
                     }
                 );
