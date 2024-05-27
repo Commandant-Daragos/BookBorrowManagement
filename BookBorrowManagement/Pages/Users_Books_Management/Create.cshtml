@@ -1,0 +1,42 @@
+﻿@page
+@model BookBorrowManagement.Pages.Users_Books_Management.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>User_Book_Management</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="User_Book_Management.User.Name" class="control-label"></label>
+                <select asp-for="User_Book_Management.User.Name" class ="form-control" asp-items="ViewBag.UserName"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="User_Book_Management.Book.Title" class="control-label"></label>
+                <select asp-for="User_Book_Management.Book.Title" class ="form-control" asp-items="ViewBag.BookTitle"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="User_Book_Management.BorrowDate" class="control-label"></label>
+                <input asp-for="User_Book_Management.BorrowDate" class="form-control" />
+                <span asp-validation-for="User_Book_Management.BorrowDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

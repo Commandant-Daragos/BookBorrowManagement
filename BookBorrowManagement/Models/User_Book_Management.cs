@@ -9,8 +9,8 @@ namespace BookBorrowManagement.Models
         public int BookID { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Borrow Date")]
         public DateTime BorrowDate { get; set; }
-        public Status Status { get; set; }
 
         public virtual User User { get; set; }
         public virtual Book Book { get; set; }
