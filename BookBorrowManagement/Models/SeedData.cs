@@ -1,4 +1,5 @@
 ﻿using BookBorrowManagement.Data;
+using BookBorrowManagement.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookBorrowManagement.Models

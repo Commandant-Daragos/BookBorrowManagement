@@ -15,14 +15,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="User_Book_Management.Id" />
             <div class="form-group">
-                <label asp-for="User_Book_Management.UserID" class="control-label"></label>
-                <select asp-for="User_Book_Management.UserID" class="form-control" asp-items="ViewBag.UserID"></select>
-                <span asp-validation-for="User_Book_Management.UserID" class="text-danger"></span>
+                <label asp-for="User_Book_Management.UserId" class="control-label"></label>
+                <select asp-for="User_Book_Management.UserId" class="form-control" asp-items="Model.Users"></select>
+                <span asp-validation-for="User_Book_Management.UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User_Book_Management.BookID" class="control-label"></label>
-                <select asp-for="User_Book_Management.BookID" class="form-control" asp-items="ViewBag.BookID"></select>
-                <span asp-validation-for="User_Book_Management.BookID" class="text-danger"></span>
+                <label asp-for="User_Book_Management.BookId" class="control-label"></label>
+                <select asp-for="User_Book_Management.BookId" class="form-control" asp-items="Model.Books"></select>
+                <span asp-validation-for="User_Book_Management.BookId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="User_Book_Management.BorrowDate" class="control-label"></label>

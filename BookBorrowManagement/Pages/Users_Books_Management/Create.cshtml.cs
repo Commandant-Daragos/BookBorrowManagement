@@ -15,7 +15,9 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
         private readonly BookBorrowManagement.Data.BookBorrowManagementContext _context;
 
         [BindProperty]
-        public User_Book_Management User_Book_Management { get; set; } = default!;
+        public User_Book_Management? User_Book_Management { get; set; }
+        public SelectList? Users { get; set; }
+        public SelectList? Books { get; set; }
 
         public CreateModel(BookBorrowManagement.Data.BookBorrowManagementContext context)
         {
@@ -24,30 +26,41 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
 
         public IActionResult OnGet()
         {
-        ViewData["BookTitle"] = new SelectList(_context.Book.Select(b => b.Title).ToList());
-        ViewData["UserName"] = new SelectList(_context.User.Select(u => u.Name +" "+ u.MidName +" "+ u.Surname).ToList());
-            // Ensure User_Book_Management is instantiated
-            if (User_Book_Management == null)
+            if(User_Book_Management == null)
             {
                 User_Book_Management = new User_Book_Management();
             }
 
-            // Set the default value of BorrowDate to the current date
-            User_Book_Management.BorrowDate = DateTime.Today;
+
+            User_Book_Management.BorrowDate = DateTime.Now;
+            Books = new SelectList(_context.Book, "Id", "Title");
+            Users = new SelectList(_context.User, "Id", "Name");
             return Page();
         }
-
-
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            var book = await _context.Book.FindAsync(User_Book_Management.BookId);
+            var user = await _context.User.FindAsync(User_Book_Management.UserId);
+
             if (!ModelState.IsValid)
             {
+                Books = new SelectList(_context.Book, "Id", "Title");
+                Users = new SelectList(_context.User, "Id", "Name");
                 return Page();
             }
 
+            // Add the User_Book_Management entity to the context
             _context.User_Book_Management.Add(User_Book_Management);
+
+            // Set the navigation properties
+            User_Book_Management.User = user;
+            User_Book_Management.Book = book;
+
+            book.UserBookManagements.Add(User_Book_Management);
+            user.UserBookManagements.Add(User_Book_Management);
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

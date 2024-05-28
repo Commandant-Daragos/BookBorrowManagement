@@ -14,12 +14,14 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="User_Book_Management.User.Name" class="control-label"></label>
-                <select asp-for="User_Book_Management.User.Name" class ="form-control" asp-items="ViewBag.UserName"></select>
+                <label asp-for="User_Book_Management.UserId" class="control-label"></label>
+                <select asp-for="User_Book_Management.UserId" class="form-control" asp-items="Model.Users"></select>
+                <span asp-validation-for="User_Book_Management.UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User_Book_Management.Book.Title" class="control-label"></label>
-                <select asp-for="User_Book_Management.Book.Title" class ="form-control" asp-items="ViewBag.BookTitle"></select>
+                <label asp-for="User_Book_Management.BookId" class="control-label"></label>
+                <select asp-for="User_Book_Management.BookId" class="form-control" asp-items="Model.Books"></select>
+                <span asp-validation-for="User_Book_Management.BookId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="User_Book_Management.BorrowDate" class="control-label"></label>

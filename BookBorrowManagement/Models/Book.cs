@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BookBorrowManagement.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookBorrowManagement.Models
 {
@@ -10,15 +11,11 @@ namespace BookBorrowManagement.Models
         public string? Description { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
         public Status? Status { get; set; }
-    }
 
-    public enum Status
-    {
-        New,
-        Borrowed,
-        Returned
+        public virtual ICollection<User_Book_Management>? UserBookManagements { get; set; }
     }
 }

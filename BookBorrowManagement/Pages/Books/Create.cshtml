@@ -2,10 +2,10 @@
 @model BookBorrowManagement.Pages.Books.CreateModel
 
 @{
-    ViewData["Title"] = "Create Book";
+    ViewData["Title"] = "Create";
 }
 
-<h1>Create Book</h1>
+<h1>Create</h1>
 
 <h4>Book</h4>
 <hr />
@@ -32,11 +32,6 @@
                 <label asp-for="Book.ReleaseDate" class="control-label"></label>
                 <input asp-for="Book.ReleaseDate" class="form-control" />
                 <span asp-validation-for="Book.ReleaseDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Book.Status" class="control-label"></label>
-                <select asp-for="Book.Status" class="form-control"></select>
-                <span asp-validation-for="Book.Status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

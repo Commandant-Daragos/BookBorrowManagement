@@ -69,7 +69,7 @@ namespace BookBorrowManagement.Pages.Books
             return RedirectToPage("./Index");
         }
 
-        private bool BookExists(int? id)
+        private bool BookExists(int id)
         {
             return _context.Book.Any(e => e.Id == id);
         }

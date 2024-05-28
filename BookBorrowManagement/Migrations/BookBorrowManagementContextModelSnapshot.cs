@@ -90,20 +90,20 @@ namespace BookBorrowManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BookID")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("BorrowDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserID")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookID");
+                    b.HasIndex("BookId");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("UserId");
 
                     b.ToTable("User_Book_Management");
                 });
@@ -111,20 +111,30 @@ namespace BookBorrowManagement.Migrations
             modelBuilder.Entity("BookBorrowManagement.Models.User_Book_Management", b =>
                 {
                     b.HasOne("BookBorrowManagement.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookID")
+                        .WithMany("UserBookManagements")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BookBorrowManagement.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserID")
+                        .WithMany("UserBookManagements")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Book");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BookBorrowManagement.Models.Book", b =>
+                {
+                    b.Navigation("UserBookManagements");
+                });
+
+            modelBuilder.Entity("BookBorrowManagement.Models.User", b =>
+                {
+                    b.Navigation("UserBookManagements");
                 });
 #pragma warning restore 612, 618
         }

@@ -23,6 +23,9 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
         [BindProperty]
         public User_Book_Management User_Book_Management { get; set; } = default!;
 
+        public SelectList? Users { get; set; }
+        public SelectList? Books { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -36,8 +39,8 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
                 return NotFound();
             }
             User_Book_Management = user_book_management;
-           ViewData["BookID"] = new SelectList(_context.Book, "Id", "Id");
-           ViewData["UserID"] = new SelectList(_context.User, "Id", "Id");
+            Books = new SelectList(_context.Book, "Id", "Title");
+            Users = new SelectList(_context.User, "Id", "Name");
             return Page();
         }
 
@@ -47,6 +50,8 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
         {
             if (!ModelState.IsValid)
             {
+                Books = new SelectList(_context.Book, "Id", "Title");
+                Users = new SelectList(_context.User, "Id", "Name");
                 return Page();
             }
 

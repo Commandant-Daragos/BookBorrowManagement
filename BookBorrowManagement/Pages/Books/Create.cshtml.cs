@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BookBorrowManagement.Data;
 using BookBorrowManagement.Models;
+using BookBorrowManagement.Enums;
 
 namespace BookBorrowManagement.Pages.Books
 {
@@ -30,11 +31,13 @@ namespace BookBorrowManagement.Pages.Books
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
+            Book.Status = Status.New;
             _context.Book.Add(Book);
             await _context.SaveChangesAsync();
 

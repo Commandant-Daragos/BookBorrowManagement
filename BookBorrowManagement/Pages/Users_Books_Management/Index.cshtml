@@ -22,34 +22,27 @@
             <th>
                 @Html.DisplayNameFor(model => model.User_Book_Management[0].Book.Title)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User_Book_Management[0].Book.Status)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.User_Book_Management)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BorrowDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Book.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Book.Status)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model.User_Book_Management) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book.Title)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>

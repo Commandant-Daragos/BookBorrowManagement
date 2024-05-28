@@ -7,12 +7,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BookBorrowManagement.Data;
 using BookBorrowManagement.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BookBorrowManagement.Pages.Users_Books_Management
 {
     public class DetailsModel : PageModel
     {
         private readonly BookBorrowManagement.Data.BookBorrowManagementContext _context;
+
+        public User DetailUser { get; set; }
+        public Book Book { get; set; }
 
         public DetailsModel(BookBorrowManagement.Data.BookBorrowManagementContext context)
         {
@@ -23,12 +27,16 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var user_book_management = await _context.User_Book_Management.FirstOrDefaultAsync(m => m.Id == id);
+            var user_book_management = await _context.User_Book_Management
+                                                                    .Include(ubm => ubm.Book)
+                                                                    .Include(ubm => ubm.User)
+                                                                    .FirstOrDefaultAsync(m => m.Id == id);
             if (user_book_management == null)
             {
                 return NotFound();
@@ -36,6 +44,12 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
             else
             {
                 User_Book_Management = user_book_management;
+
+                //var book = await _context.Book.FindAsync(User_Book_Management.BookId);
+                //var user = await _context.User.FindAsync(User_Book_Management.UserId);
+
+                //DetailUser = user;
+                //Book = book;
             }
             return Page();
         }

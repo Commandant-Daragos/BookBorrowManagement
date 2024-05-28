@@ -13,7 +13,10 @@ namespace BookBorrowManagement.Models
         public string Email { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Create Date")]
         public DateTime CreatedDate { get; set; }
+
+        public virtual ICollection<User_Book_Management>? UserBookManagements { get; set; }
 
     }
 }

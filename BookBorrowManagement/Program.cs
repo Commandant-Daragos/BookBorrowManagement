@@ -1,11 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BookBorrowManagement.Data;
+using BookBorrowManagement.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using BookBorrowManagement.Data;
-using BookBorrowManagement.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
 builder.Services.AddDbContext<BookBorrowManagementContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BookBorrowManagementContext") ?? throw new InvalidOperationException("Connection string 'BookBorrowManagementContext' not found.")));
 
