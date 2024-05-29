@@ -14,6 +14,8 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
     {
         private readonly BookBorrowManagement.Data.BookBorrowManagementContext _context;
 
+        public int ID { get; set; }
+
         public IndexModel(BookBorrowManagement.Data.BookBorrowManagementContext context)
         {
             _context = context;
@@ -26,6 +28,26 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
             User_Book_Management = await _context.User_Book_Management
                 .Include(u => u.Book)
                 .Include(u => u.User).ToListAsync();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            //await _context.User_Book_Management.FindAsync(id);
+            User_Book_Management = await _context.User_Book_Management
+                .Include(u => u.Book)
+                .Include(u => u.User).ToListAsync();
+
+            var user_book_management = User_Book_Management.FirstOrDefault(m => m.Id == id);
+            {
+                user_book_management.Book.Status = Enums.Status.Returned;
+                await _context.SaveChangesAsync();
+            }
+
+            return Page();
         }
     }
 }

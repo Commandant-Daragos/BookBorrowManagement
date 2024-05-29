@@ -42,7 +42,8 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
         public async Task<IActionResult> OnPostAsync()
         {
             var book = await _context.Book.FindAsync(User_Book_Management.BookId);
-            var user = await _context.User.FindAsync(User_Book_Management.UserId);
+            book.Status = Enums.Status.Borrowed;
+            //var user = await _context.User.FindAsync(User_Book_Management.UserId);
 
             if (!ModelState.IsValid)
             {
@@ -54,12 +55,12 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
             // Add the User_Book_Management entity to the context
             _context.User_Book_Management.Add(User_Book_Management);
 
-            // Set the navigation properties
-            User_Book_Management.User = user;
-            User_Book_Management.Book = book;
+            // Set the navigation properties=probably not needed
+            //User_Book_Management.User = user;
+            //User_Book_Management.Book = book;
 
-            book.UserBookManagements.Add(User_Book_Management);
-            user.UserBookManagements.Add(User_Book_Management);
+            //book.UserBookManagements.Add(User_Book_Management);
+            //user.UserBookManagements.Add(User_Book_Management);
 
             await _context.SaveChangesAsync();
 

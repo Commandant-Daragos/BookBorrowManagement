@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.User_Book_Management[0].Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.User_Book_Management[0].BorrowDate)
             </th>
             <th>
@@ -22,12 +25,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.User_Book_Management[0].Book.Title)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User_Book_Management[0].Book.Status)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.User_Book_Management) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BorrowDate)
             </td>
@@ -38,9 +47,19 @@
                 @Html.DisplayFor(modelItem => item.Book.Title)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Book.Status)
+            </td>
+            <td>
+                @{
+                    Model.ID = item.Id;
+                }
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <form method="post">
+                     <input type="hidden" asp-for="ID" />
+                    <input type="submit" value="Return" class="btn btn-primary" />
+                </form>
             </td>
         </tr>
 }

@@ -28,7 +28,7 @@ namespace BookBorrowManagement.Pages
 
         public IActionResult OnGetDelete(int id)
         {
-            return RedirectToPage("/Books/Delete", new { id });
+            return RedirectToPage("/Books/Details", new { id });
         }
     }
 }

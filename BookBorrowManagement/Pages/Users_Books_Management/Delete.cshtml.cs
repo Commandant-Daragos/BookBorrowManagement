@@ -29,7 +29,10 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
                 return NotFound();
             }
 
-            var user_book_management = await _context.User_Book_Management.FirstOrDefaultAsync(m => m.Id == id);
+            var user_book_management = await _context.User_Book_Management
+                                                        .Include(ubm => ubm.Book)
+                                                        .Include(ubm => ubm.User)
+                                                        .FirstOrDefaultAsync(m => m.Id == id);
 
             if (user_book_management == null)
             {
