@@ -52,6 +52,7 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
 
             await _context.SaveChangesAsync();
 
+            
             return RedirectToPage("./Index"); //check solution
             //return Page();
         }
