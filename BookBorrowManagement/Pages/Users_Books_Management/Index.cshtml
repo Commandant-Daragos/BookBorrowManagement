@@ -29,6 +29,7 @@
                 @Html.DisplayNameFor(model => model.User_Book_Management[0].Book.Status)
             </th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -50,14 +51,16 @@
                 @Html.DisplayFor(modelItem => item.Book.Status)
             </td>
             <td>
-                @{
-                    Model.ID = item.Id;
-                }
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+            <td>
+                @{
+                    Model.ID = item.Id;
+                }
                 <form method="post">
-                     <input type="hidden" asp-for="ID" />
+                    <input type="hidden" asp-for="ID" />
                     <input type="submit" value="Return" class="btn btn-primary" />
                 </form>
             </td>

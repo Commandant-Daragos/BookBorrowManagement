@@ -51,12 +51,6 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
             // Add the User_Book_Management entity to the context
             _context.User_Book_Management.Add(User_Book_Management);
 
-            // Set the navigation properties=probably not needed
-            //User_Book_Management.User = user;
-            //User_Book_Management.Book = book;
-
-            //book.UserBookManagements.Add(User_Book_Management);
-            //user.UserBookManagements.Add(User_Book_Management);
 
             await _context.SaveChangesAsync();
 

@@ -1,0 +1,49 @@
+﻿@page
+@model BookBorrowManagement.Pages.Users_Books_Management_History.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User_Book_Management_History[0].BorrowDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User_Book_Management_History[0].ReturnDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User_Book_Management_History[0].User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User_Book_Management_History[0].Book)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.User_Book_Management_History) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book.Id)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

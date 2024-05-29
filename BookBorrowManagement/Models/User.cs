@@ -17,6 +17,7 @@ namespace BookBorrowManagement.Models
         public DateTime CreatedDate { get; set; }
 
         public virtual ICollection<User_Book_Management>? UserBookManagements { get; set; }
+        public virtual ICollection<User_Book_Management_History>? UserBookManagementsHistory { get; set; }
 
     }
 }

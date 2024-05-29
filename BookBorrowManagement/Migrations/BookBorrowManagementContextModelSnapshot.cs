@@ -108,6 +108,35 @@ namespace BookBorrowManagement.Migrations
                     b.ToTable("User_Book_Management");
                 });
 
+            modelBuilder.Entity("BookBorrowManagement.Models.User_Book_Management_History", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("BorrowDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("User_Book_Management_History");
+                });
+
             modelBuilder.Entity("BookBorrowManagement.Models.User_Book_Management", b =>
                 {
                     b.HasOne("BookBorrowManagement.Models.Book", "Book")
@@ -127,14 +156,37 @@ namespace BookBorrowManagement.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BookBorrowManagement.Models.User_Book_Management_History", b =>
+                {
+                    b.HasOne("BookBorrowManagement.Models.Book", "Book")
+                        .WithMany("UserBookManagementsHistory")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookBorrowManagement.Models.User", "User")
+                        .WithMany("UserBookManagementsHistory")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("BookBorrowManagement.Models.Book", b =>
                 {
                     b.Navigation("UserBookManagements");
+
+                    b.Navigation("UserBookManagementsHistory");
                 });
 
             modelBuilder.Entity("BookBorrowManagement.Models.User", b =>
                 {
                     b.Navigation("UserBookManagements");
+
+                    b.Navigation("UserBookManagementsHistory");
                 });
 #pragma warning restore 612, 618
         }

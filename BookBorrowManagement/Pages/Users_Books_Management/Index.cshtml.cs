@@ -32,18 +32,28 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
             {
                 return NotFound();
             }
-            //await _context.User_Book_Management.FindAsync(id);
+
             User_Book_Management = await _context.User_Book_Management
                 .Include(u => u.Book)
                 .Include(u => u.User).ToListAsync();
 
             var user_book_management = User_Book_Management.FirstOrDefault(m => m.Id == id);
-            {
-                user_book_management.Book.Status = Enums.Status.Returned;
-                await _context.SaveChangesAsync();
-            }
 
-            return Page();
+            User_Book_Management_History users_Books_Management_History = new User_Book_Management_History() 
+            { BookId = user_book_management.BookId,
+              UserId = user_book_management.UserId,
+              BorrowDate = user_book_management.BorrowDate,
+              ReturnDate = DateTime.Now,
+            };
+
+            user_book_management.Book.Status = Enums.Status.Returned;
+            _context.User_Book_Management_History.Add(users_Books_Management_History);
+            _context.User_Book_Management.Remove(user_book_management);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Index"); //check solution
+            //return Page();
         }
     }
 }

@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace BookBorrowManagement.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial_Migration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -71,6 +72,34 @@ namespace BookBorrowManagement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "User_Book_Management_History",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    BookId = table.Column<int>(type: "int", nullable: false),
+                    BorrowDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User_Book_Management_History", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_User_Book_Management_History_Book_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Book",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_User_Book_Management_History_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_User_Book_Management_BookId",
                 table: "User_Book_Management",
@@ -80,6 +109,16 @@ namespace BookBorrowManagement.Migrations
                 name: "IX_User_Book_Management_UserId",
                 table: "User_Book_Management",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Book_Management_History_BookId",
+                table: "User_Book_Management_History",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Book_Management_History_UserId",
+                table: "User_Book_Management_History",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -87,6 +126,9 @@ namespace BookBorrowManagement.Migrations
         {
             migrationBuilder.DropTable(
                 name: "User_Book_Management");
+
+            migrationBuilder.DropTable(
+                name: "User_Book_Management_History");
 
             migrationBuilder.DropTable(
                 name: "Book");

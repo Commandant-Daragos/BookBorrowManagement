@@ -17,5 +17,6 @@ namespace BookBorrowManagement.Models
         public Status? Status { get; set; }
 
         public virtual ICollection<User_Book_Management>? UserBookManagements { get; set; }
+        public virtual ICollection<User_Book_Management_History>? UserBookManagementsHistory { get; set; }
     }
 }
