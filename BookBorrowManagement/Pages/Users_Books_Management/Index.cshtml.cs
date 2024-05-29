@@ -47,14 +47,21 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
             };
 
             user_book_management.Book.Status = Enums.Status.Returned;
+
+            SendEmail(user_book_management.User.Email);
+
             _context.User_Book_Management_History.Add(users_Books_Management_History);
             _context.User_Book_Management.Remove(user_book_management);
 
             await _context.SaveChangesAsync();
 
             
-            return RedirectToPage("./Index"); //check solution
-            //return Page();
+            return RedirectToPage("./Index");
+        }
+
+        private async Task SendEmail(string email)
+        {
+            //Fake e-mail sending to user after book return
         }
     }
 }

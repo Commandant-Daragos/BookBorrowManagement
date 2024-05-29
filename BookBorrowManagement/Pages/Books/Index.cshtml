@@ -2,13 +2,13 @@
 @model BookBorrowManagement.Pages.Books.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "List of Books";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Create New Book</a>
 </p>
 <table class="table">
     <thead>

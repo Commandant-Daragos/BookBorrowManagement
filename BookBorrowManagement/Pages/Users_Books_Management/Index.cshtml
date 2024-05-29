@@ -2,28 +2,25 @@
 @model BookBorrowManagement.Pages.Users_Books_Management.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "List of Currently Borrowed Books";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Create New Borrow Contract</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.User_Book_Management[0].Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User_Book_Management[0].BorrowDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.User_Book_Management[0].User.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.User_Book_Management[0].Book.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User_Book_Management[0].BorrowDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.User_Book_Management[0].Book.Status)
@@ -36,16 +33,13 @@
 @foreach (var item in Model.User_Book_Management) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BorrowDate)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.User.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Book.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Book.Status)

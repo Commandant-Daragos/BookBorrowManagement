@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Main page for library";
 }
 
 <div class="text-center">
@@ -14,7 +14,7 @@
         <a asp-page="/Books/Create">Create New Book</a>
     </p>
     <form method="get" action="/Books/Details">
-        <p>Delete book by ID</p>
+        <p>Detail of Book by ID</p>
         <select asp-items="Model.BookIDs" name="id">
             <option value="">--</option>
         </select>

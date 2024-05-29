@@ -29,7 +29,7 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
 
 
             User_Book_Management.BorrowDate = DateTime.Now;
-            Books = new SelectList(_context.Book, "Id", "Title");
+            Books = new SelectList(_context.Book.Where(b => b.Status != Enums.Status.Borrowed), "Id", "Title");
             Users = new SelectList(_context.User, "Id", "Name");
             return Page();
         }

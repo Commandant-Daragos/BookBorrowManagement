@@ -75,7 +75,7 @@ namespace BookBorrowManagement.Models
                         Name = "Samuel",
                         MidName = "Lobotomy",
                         Surname = "Lackson",
-                        Email = "sammy88@somemail.com",
+                        Email = "sammy99@somemail.com",
                         CreatedDate = DateTime.Parse("2020-6-22")
                     },
 

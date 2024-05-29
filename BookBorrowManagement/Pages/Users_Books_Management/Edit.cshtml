@@ -2,10 +2,10 @@
 @model BookBorrowManagement.Pages.Users_Books_Management.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit existing contract";
 }
 
-<h1>Edit</h1>
+<h1>@ViewData["Title"]</h1>
 
 <h4>User_Book_Management</h4>
 <hr />
@@ -15,12 +15,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="User_Book_Management.Id" />
             <div class="form-group">
-                <label asp-for="User_Book_Management.UserId" class="control-label"></label>
+                <label asp-for="User_Book_Management.User.Name" class="control-label"></label>
                 <select asp-for="User_Book_Management.UserId" class="form-control" asp-items="Model.Users"></select>
                 <span asp-validation-for="User_Book_Management.UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User_Book_Management.BookId" class="control-label"></label>
+                <label asp-for="User_Book_Management.Book.Title" class="control-label"></label>
                 <select asp-for="User_Book_Management.BookId" class="form-control" asp-items="Model.Books"></select>
                 <span asp-validation-for="User_Book_Management.BookId" class="text-danger"></span>
             </div>

@@ -2,24 +2,24 @@
 @model BookBorrowManagement.Pages.Users_Books_Management.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create new Borrow Contract";
 }
 
-<h1>Create</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>User_Book_Management</h4>
+<h4>For User_Book_Management Entity</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="User_Book_Management.UserId" class="control-label"></label>
+                <label asp-for="User_Book_Management.User.Name" class="control-label"></label>
                 <select asp-for="User_Book_Management.UserId" class="form-control" asp-items="Model.Users"></select>
                 <span asp-validation-for="User_Book_Management.UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User_Book_Management.BookId" class="control-label"></label>
+                <label asp-for="User_Book_Management.Book.Title" class="control-label"></label>
                 <select asp-for="User_Book_Management.BookId" class="form-control" asp-items="Model.Books"></select>
                 <span asp-validation-for="User_Book_Management.BookId" class="text-danger"></span>
             </div>
