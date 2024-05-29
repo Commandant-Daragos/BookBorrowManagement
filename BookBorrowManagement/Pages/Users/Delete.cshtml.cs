@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BookBorrowManagement.Models;
+using BookBorrowManagement.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BookBorrowManagement.Data;
-using BookBorrowManagement.Models;
 
 namespace BookBorrowManagement.Pages.Users
 {
     public class DeleteModel : PageModel
     {
-        private readonly BookBorrowManagement.Data.BookBorrowManagementContext _context;
+        private readonly BookBorrowManagementContext _context;
 
-        public DeleteModel(BookBorrowManagement.Data.BookBorrowManagementContext context)
+        public DeleteModel(BookBorrowManagementContext context)
         {
             _context = context;
         }

@@ -1,21 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
+using BookBorrowManagement.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace BookBorrowManagement.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly BookBorrowManagement.Data.BookBorrowManagementContext _context;
+        private readonly BookBorrowManagementContext _context;
 
         public SelectList? BookIDs { get; set; }
 
         ////[BindProperty(SupportsGet = true)]
         ////public int? SelectedBookId { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, BookBorrowManagement.Data.BookBorrowManagementContext context)
+        public IndexModel(ILogger<IndexModel> logger, BookBorrowManagementContext context)
         {
             _logger = logger;
             _context = context;
@@ -23,7 +23,7 @@ namespace BookBorrowManagement.Pages
 
         public void OnGet()
         {
-           BookIDs = new SelectList(_context.Book, "Id", "Title");
+            BookIDs = new SelectList(_context.Book, "Id", "Title");
         }
 
         public IActionResult OnGetDelete(int id)

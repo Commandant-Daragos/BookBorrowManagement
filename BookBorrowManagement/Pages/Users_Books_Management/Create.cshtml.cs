@@ -1,32 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BookBorrowManagement.Models;
+using BookBorrowManagement.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using BookBorrowManagement.Data;
-using BookBorrowManagement.Models;
 
 namespace BookBorrowManagement.Pages.Users_Books_Management
 {
     public class CreateModel : PageModel
     {
-        private readonly BookBorrowManagement.Data.BookBorrowManagementContext _context;
+        private readonly BookBorrowManagementContext _context;
 
         [BindProperty]
         public User_Book_Management? User_Book_Management { get; set; }
         public SelectList? Users { get; set; }
         public SelectList? Books { get; set; }
 
-        public CreateModel(BookBorrowManagement.Data.BookBorrowManagementContext context)
+        public CreateModel(BookBorrowManagementContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
-            if(User_Book_Management == null)
+            if (User_Book_Management == null)
             {
                 User_Book_Management = new User_Book_Management();
             }

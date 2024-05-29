@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BookBorrowManagement.Models;
+using BookBorrowManagement.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BookBorrowManagement.Data;
-using BookBorrowManagement.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BookBorrowManagement.Pages.Users_Books_Management
 {
     public class DetailsModel : PageModel
     {
-        private readonly BookBorrowManagement.Data.BookBorrowManagementContext _context;
+        private readonly BookBorrowManagementContext _context;
 
         public User DetailUser { get; set; }
         public Book Book { get; set; }
 
-        public DetailsModel(BookBorrowManagement.Data.BookBorrowManagementContext context)
+        public DetailsModel(BookBorrowManagementContext context)
         {
             _context = context;
         }

@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BookBorrowManagement.Enums;
+using BookBorrowManagement.Models;
+using BookBorrowManagement.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using BookBorrowManagement.Data;
-using BookBorrowManagement.Models;
-using BookBorrowManagement.Enums;
 
 namespace BookBorrowManagement.Pages.Books
 {
     public class CreateModel : PageModel
     {
-        private readonly BookBorrowManagement.Data.BookBorrowManagementContext _context;
+        private readonly BookBorrowManagementContext _context;
 
-        public CreateModel(BookBorrowManagement.Data.BookBorrowManagementContext context)
+        public CreateModel(BookBorrowManagementContext context)
         {
             _context = context;
         }

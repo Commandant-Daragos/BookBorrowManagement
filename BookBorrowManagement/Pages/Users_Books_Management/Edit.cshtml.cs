@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BookBorrowManagement.Models;
+using BookBorrowManagement.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BookBorrowManagement.Data;
-using BookBorrowManagement.Models;
 
 namespace BookBorrowManagement.Pages.Users_Books_Management
 {
     public class EditModel : PageModel
     {
-        private readonly BookBorrowManagement.Data.BookBorrowManagementContext _context;
+        private readonly BookBorrowManagementContext _context;
 
-        public EditModel(BookBorrowManagement.Data.BookBorrowManagementContext context)
+        public EditModel(BookBorrowManagementContext context)
         {
             _context = context;
         }
@@ -33,7 +29,7 @@ namespace BookBorrowManagement.Pages.Users_Books_Management
                 return NotFound();
             }
 
-            var user_book_management =  await _context.User_Book_Management.FirstOrDefaultAsync(m => m.Id == id);
+            var user_book_management = await _context.User_Book_Management.FirstOrDefaultAsync(m => m.Id == id);
             if (user_book_management == null)
             {
                 return NotFound();
