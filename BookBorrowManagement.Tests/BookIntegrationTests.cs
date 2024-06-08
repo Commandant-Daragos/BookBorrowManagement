@@ -7,11 +7,11 @@ using Moq;
 
 namespace BookBorrowManagement.Tests
 {
-    public class BookTests : IDisposable
+    public class BookIntegrationTests : IDisposable
     {
         private readonly BookBorrowManagementContext _dbContext;
 
-        public BookTests()
+        public BookIntegrationTests()
         {
             var options = new DbContextOptionsBuilder<BookBorrowManagementContext>()
                 .UseInMemoryDatabase(databaseName: "TestDatabase")
